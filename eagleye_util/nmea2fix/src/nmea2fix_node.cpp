@@ -19,7 +19,7 @@ void nmea_callback(const nmea_msgs::msg::Sentence::ConstSharedPtr msg)
   sentence.header = msg->header;
   sentence.sentence = msg->sentence;
   nmea2fix_converter(sentence, &fix, &gga);
-  if (ros_clock.seconds() != 0)
+  if (ros_clock.seconds() != 0 && fix.latitude != 0 && fix.longitude != 0 && fix.altitude != 0)
   {
     gga.header.frame_id = fix.header.frame_id = "gps";
     pub1->publish(fix);
