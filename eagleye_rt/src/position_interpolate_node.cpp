@@ -98,7 +98,7 @@ void enu_vel_callback(const geometry_msgs::msg::Vector3Stamped::ConstSharedPtr m
     pub1->publish(enu_absolute_pos_interpolate);
     pub2->publish(eagleye_fix);
   }
-  else if (fix_time != 0)
+  else if (fix_time != 0 && fix.latitude != 0 && fix.longitude != 0 && fix.altitude != 0)
   {
     pub2->publish(fix);
   }
